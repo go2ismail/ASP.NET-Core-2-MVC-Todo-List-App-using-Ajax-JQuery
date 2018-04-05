@@ -1,0 +1,67 @@
+﻿@model IEnumerable<netcoretodo.Models.Todo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm" data-backdrop="static" data-keyboard="false">
+    New Todo
+</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+</table>
+<!--Modal Start-->
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Todo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        
+                        <form id="formTodo">
+                            <span> @Html.AntiForgeryToken() </span>
+                            <input id="todoId" name="todoId" type="hidden" value="0" />
+                            <div class="form-group">
+                                <label class="control-label">title</label>
+                                <input id="title" name="title" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">description</label>
+                                <input id="description" name="description" class="form-control" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="closeTodo" name="closeTodo" type="button" class="btn btn-secondary">Close</button>
+                <button id="saveTodo" name="saveTodo" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal End-->
+
+@section Scripts{
+    <script src="~/js/jtodo/index.js"></script>
+}
